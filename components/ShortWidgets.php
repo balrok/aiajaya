@@ -7,10 +7,14 @@ class ShortWidgets
 	static function ckEditor($model, $attribute, $options=array(), $htmlOptions=array())
 	{
 		$options = array();
-		$options['filebrowserBrowseUrl'] 		= Yii::app()->baseUrl.'/ckfinderAquYi/ckfinder.html';
-		$options['filebrowserImageBrowseUrl'] 	= Yii::app()->baseUrl.'/ckfinderAquYi/ckfinder.html?Type=Images';
-		$options['filebrowserUploadUrl'] 		= Yii::app()->baseUrl.'/ckfinderAquYi/core/connector/php/connector.php?command=QuickUpload&type=Files';
-		$options['filebrowserImageUploadUrl'] 	= Yii::app()->baseUrl.'/ckfinderAquYi/core/connector/php/connector.php?command=QuickUpload&type=Images';
+
+		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../assets');
+		$options['filebrowserBrowseUrl'] 		= $assets.'/kcfinder/browse.php?opener=ckeditor&type=files';
+		$options['filebrowserImageBrowseUrl'] = $assets.'/kcfinder/browse.php?opener=ckeditor&type=images';
+		$options['filebrowserFlashBrowseUrl'] = $assets.'/kcfinder/browse.php?opener=ckeditor&type=flash';
+		$options['filebrowserUploadUrl'] 		= $assets.'/kcfinder/upload.php?opener=ckeditor&type=files';
+		$options['filebrowserImageUploadUrl'] = $assets.'/kcfinder/upload.php?opener=ckeditor&type=images';
+		$options['filebrowserFlashUploadUrl'] = $assets.'/kcfinder/upload.php?opener=ckeditor&type=flash';
 
 		Yii::app()->getController()->widget('aiajaya.extensions.ckeditor.CKEditor', array(
 			'model'=>$model,
