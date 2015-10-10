@@ -1,0 +1,90 @@
+0. UPDATE THAT README!!!!!!!
+
+1. What you need
+	copy EJNestedTreeActions, jsTree and yiiext to your extensions folder
+
+	set up a model:
+	<?php
+	class Category extends CActiveRecord {
+		// needed by jstree
+		public $hasManyRoots = true;
+		public function behaviors()
+		{
+			return array(
+				'tree' => array(
+					'class' => 'ext.yiiext.behaviors.model.trees.ENestedSetBehavior',
+					'hasManyRoots' => $this->hasManyRoots,
+					// columns
+					'root' => 'root',
+					'left' => 'lft',
+					'right' => 'rgt',
+					'level' => 'level',
+					),
+				);
+		}
+		...
+	}
+	?>
+
+	set up a controller:
+	<?php
+
+	define(ROOT_ID, 1);
+	class CategoryController extends Controller
+	{
+		public $rootid = ROOT_ID;
+		public function behaviors()
+		{
+			return array(
+				'EJNestedTreeActions'=>array(
+					'class'=>'ext.EJNestedTreeActions.EBehavior',
+					'classname'=>'Category',
+					'identity'=>'id',
+					'text'=>'name',
+					'mapping'=>array(
+						'data'=>'name',
+						'attr'=>array(
+							'id'=>'id',
+							'rel'=>'compoundType',
+						),
+					),
+				),
+			);
+		}
+		public function actions()
+		{
+			return array (
+				'render'	=>'ext.EJNestedTreeActions.actions.Render',
+				'createnode'=>'ext.EJNestedTreeActions.actions.Createnode',
+				'renamenode'=>'ext.EJNestedTreeActions.actions.Renamenode',
+				'deletenode'=>'ext.EJNestedTreeActions.actions.Deletenode',
+				'movenode'	=>'ext.EJNestedTreeActions.actions.Movenode',
+				'copynode'	=>'ext.EJNestedTreeActions.actions.Copynode',
+				'enternode'	=>'ext.EJNestedTreeActions.actions.Enternode',
+			);
+		}
+		public function actionIndex()
+		{
+			$this->render('index');
+		}
+		public function actionView($id)
+		{
+			$model = Category::model()->findbyPk($id);
+			$this->render('view', array('model'=>$model));
+		}
+	}
+	?>
+
+	and set up the views:
+	index.php
+	Press ctrl to select multiple categories.<br/>
+	<?php $this->widget('ext.EJNestedTreeActions.EJsTreeEx', array('rootid'=>$this->rootid))?>
+
+	view.php
+	<u>You are viewing category: <b><?= CHtml::encode($model->name) ?></b></u><br/>
+	<br/>
+	.....
+
+TODO
+add a thanks to the previous author
+get rid of rootid
