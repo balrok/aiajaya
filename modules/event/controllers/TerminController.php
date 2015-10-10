@@ -111,8 +111,8 @@ class TerminController extends Controller
 			$textModel->text = $_POST['TextModel']['text'];
 
 
-		$subject = 'Newsletter vom Balance Zentrum - '.strftime("%B", time());
-		$from = array('newsletter@balance-dresden.info', 'Newsletter Balance Zentrum');
+		$subject = 'Newsletter- '.strftime("%B", time());
+		$from = array('newsletter@balance-dresden.info', 'Newsletter');
 		$html = $this->renderPartial('export_mail', array(
 						'dataProvider'=>$dataProvider,
 						'textModel'=>$textModel,
@@ -142,7 +142,7 @@ class TerminController extends Controller
 			$mail->setMsg($html);
 			$html = $mail->getMsgHtml();
 			$from[0] = 'ddkatarina@hotmail.com';
-			$campaign = Yii::app()->mailchimp->createCampaign($subject, $from[0],$from[1], 'Balance Newsletter', $html, $txt);
+			$campaign = Yii::app()->mailchimp->createCampaign($subject, $from[0],$from[1], 'Newsletter', $html, $txt);
 			if ($campaign['status'] != "save")
 			{
 				diedump($campaign);
@@ -280,7 +280,7 @@ class TerminController extends Controller
 		}
 		// register rss feed
 		Yii::app()->clientScript->registerLinkTag('alternate', 'application/rss+xml', $this->createAbsoluteUrl('/event/termin/feed'),
-			null, array('title' => 'Termine vom Balance - Zentrum für Energie- und Körperarbeit') );
+			null, array('title' => 'Termine vom '. Yii::app()->name));
 
 		$model = null;
 		$needsGCalendarSync = false;
@@ -377,7 +377,7 @@ class TerminController extends Controller
 		// RSS 2.0 is the default type
 		$feed = new EFeed();
 
-		$feed->title= 'Termine vom Balance - Zentrum für Energie- und Körperarbeit';
+		$feed->title= 'Termine vom '.Yii::app()->name;
 		$feed->description = ''; // Alle Termine live im BlickDies ist ein Test die Termine als RSS 2.0 Feed anzubieten - Es wird keine Garantie auf Korrektheit und Aktualität gegeben.';
 
 		//$feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',

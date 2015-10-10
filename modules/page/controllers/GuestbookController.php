@@ -42,7 +42,7 @@ class GuestbookController extends Controller
 	{
 		// register rss feed
 		Yii::app()->clientScript->registerLinkTag('alternate', 'application/rss+xml', $this->createAbsoluteUrl('/page/guestbook/feed'),
-			null, array('title' => 'Gästebuch von Balance - Zentrum für Energie- und Körperarbeit') );
+			null, array('title' => 'Gästebuch von '. Yii::app()->name));
 
 		$this->pageTitle = 'Gästebuch '. $this->pageTitle;
 		if (isset($_GET['comment']))
@@ -112,8 +112,8 @@ class GuestbookController extends Controller
 		// RSS 2.0 is the default type
 		$feed = new EFeed();
 
-		$feed->title= 'Gästebuch vom Balance - Zentrum für Energie- und Körperarbeit';
-		$feed->description = 'Das Gästebuch vom Balance - Zentrum für Energie- und Körperarbeit';
+		$feed->title= 'Gästebuch von ' . Yii::app()->name;
+		$feed->description = 'Das Gästebuch vom '.Yii::app()->name;
 
 		$feed->addChannelTag('language', 'de-de');
 		$feed->addChannelTag('pubDate', date(DATE_RSS, time()));
@@ -239,7 +239,7 @@ class GuestbookController extends Controller
 						), true)
 					)
 					// 'Jemand hat im Gästebuch ein Kommentar geschrieben mit folgenden abgesendeten Daten: '.$postData."<br/>\n<br/>\n")
-					->setFrom('gaestebuch@balance-dresden.info', 'Gästebuch Balance Zentrum')
+					->setFrom('gaestebuch@balance-dresden.info', 'Gästebuch '.Yii::app()->name);
 					->send();
 			}
 			else
