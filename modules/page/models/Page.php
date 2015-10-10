@@ -54,7 +54,7 @@ class Page extends CActiveRecord
 		}
 
 		$return = array(
-			'ETemplateBehavior' => array('class' => 'ext.ETemplateBehavior',
+			'ETemplateBehavior' => array('class' => 'aiajaya.extensions.ETemplateBehavior',
 				'replaceArray'=>self::$replaceArray,
 				'basePath'=>array('application', 'runtime', 'pagetemplate'),
 				'contentVar'=>'text',
@@ -63,7 +63,7 @@ class Page extends CActiveRecord
 		if (Yii::app()->params['enableTags']) {
 
 			$return['tags'] = array(
-				'class' => 'ext.taggable-behavior.ETaggableBehavior',
+				'class' => 'aiajaya.extensions.taggable-behavior.ETaggableBehavior',
 				// Table where tags are stored
 				'tagTable' => '{{Tag}}',
 				// Cross-table that stores tag-model connections.

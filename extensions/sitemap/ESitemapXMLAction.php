@@ -7,7 +7,7 @@
  * @package ESitemap
  */
 
-Yii::import('ext.sitemap.*');
+Yii::import('aiajaya.extensions.sitemap.*');
 /**
  * Description of ESitemapXMLAction 
  *
@@ -17,10 +17,10 @@ Yii::import('ext.sitemap.*');
  * 	{
  *		return array(
  *			'sitemap'=>array(
- *				'class'=>'ext.sitemap.ESitemapAction',
+ *				'class'=>'aiajaya.extensions.sitemap.ESitemapAction',
  *			),
  * 			'sitemapxml'=>array(
- *				'class'=>'ext.sitemap.ESitemapXMLAction',
+ *				'class'=>'aiajaya.extensions.sitemap.ESitemapXMLAction',
  *				//'bypassLogs'=>true,
  *			),			
  *		);

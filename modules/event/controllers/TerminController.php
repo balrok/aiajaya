@@ -366,7 +366,7 @@ class TerminController extends Controller
 
 	public function actionFeed()
 	{
-		Yii::import('ext.efeed.*');
+		Yii::import('aiajaya.extensions.efeed.*');
 		// RSS 2.0 is the default type
 		$feed = new EFeed();
 

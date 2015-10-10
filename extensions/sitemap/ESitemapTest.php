@@ -1,5 +1,5 @@
 <?php
-Yii::import('ext.sitemap.*');
+Yii::import('aiajaya.extensions.sitemap.*');
 
 class ESitemapTest extends CDbTestCase
 {

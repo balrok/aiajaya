@@ -7,7 +7,7 @@
  * following a description what needs to be setup:
  *
  *
-	Yii::import('ext.ETemplate');
+	Yii::import('aiajaya.extensions.ETemplate');
 	class Example extends ETemplate {
 		public function init()
 		{

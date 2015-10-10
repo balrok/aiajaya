@@ -31,7 +31,7 @@ class ESitemapBehavior extends CBehavior {
 			$esm->attributes = $modelType;
 			if (!$esm->validate())
 			{
-				Yii::log('Impropertly configured sitemap class object: '.print_r($esm->errors, true), 'warning', 'ext.sitemap.ESitemapBeahvior');
+				Yii::log('Impropertly configured sitemap class object: '.print_r($esm->errors, true), 'warning', 'aiajaya.extensions.sitemap.ESitemapBeahvior');
 				continue;
 				//throw new CException('Improperly configured sitemap class object: '.print_r($esm->errors, true));
 			}
