@@ -53,7 +53,7 @@ $_CONFIG = array(
 
     'disabled' => false,
     'uploadURL' => dirname(dirname(dirname(Yii::app()->baseUrl)))."/upload",
-    'uploadDir' => Yii::app()->basePath."/upload",
+    'uploadDir' => dirname(Yii::app()->basePath)."/upload",
     'theme' => "default",
 
     'types' => array(

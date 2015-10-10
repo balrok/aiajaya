@@ -16,6 +16,8 @@ class ShortWidgets
 		$options['filebrowserImageUploadUrl'] = $assets.'/kcfinder/upload.php?opener=ckeditor&type=images';
 		$options['filebrowserFlashUploadUrl'] = $assets.'/kcfinder/upload.php?opener=ckeditor&type=flash';
 
+		$options['allowedContent'] = true; // otherwise it might remove <figure> tag or other
+
 		Yii::app()->getController()->widget('aiajaya.extensions.ckeditor.CKEditor', array(
 			'model'=>$model,
 			'attribute'=>$attribute,
