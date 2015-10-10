@@ -141,20 +141,23 @@ class Page extends CActiveRecord
 		parent::afterSave();
 		$this->getReplacedTemplate(array('controller'=>Yii::app()->controller));
 		$links = array_unique($this->teamLinks);
-		foreach ($this->teamPages as $t)
-			$t->delete();
-		if ($this->active)
+		if (Yii::app()->getModule('page')->team)
 		{
-			foreach ($links as $key)
+			foreach ($this->teamPages as $t)
+				$t->delete();
+			if ($this->active)
 			{
-				$tm = Team::model()->findCachedByKey($key);
-				$tId = $tm->id;
-				$t = new TeamPage();
-				$t->attributes = array('page_id'=>$this->id, 'team_id'=>$tId);
-				$t->save();
+				foreach ($links as $key)
+				{
+					$tm = Team::model()->findCachedByKey($key);
+					$tId = $tm->id;
+					$t = new TeamPage();
+					$t->attributes = array('page_id'=>$this->id, 'team_id'=>$tId);
+					$t->save();
+				}
 			}
 		}
-		Yii::log($this->text, 'info', 'seite gespeichert');
+		Yii::log($this->text, 'info', 'Seite gespeichert');
 	}
 
 	public function findAllForTeam($ids)
