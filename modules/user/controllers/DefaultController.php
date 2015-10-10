@@ -9,8 +9,8 @@ class DefaultController extends Controller
 
 	public function actionRedirect()
 	{
-        header("Location: https://balance-dresden.info/user/default/login",TRUE,301);
-        exit;
+        $this->redirect('user/default/login'); //header("Location: https://balance-dresden.info/user/default/login",TRUE,301);
+        //exit;
 	}
 
 	public function actionLogin()
