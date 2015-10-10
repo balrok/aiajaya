@@ -24,7 +24,7 @@ if ($commentable)
 		// I reduced the pagesize so it is no big problem..
 		ShortWidgets::addJsShorten(".ext-comment p", 60);
 	?>
-	<div class="tab-pane text<?php if (!$model->events){?> active<?php } ?>" id="comments">
+	<div class="tab-pane text<?php if (!Yii::app()->getModule('page')->events || !$model->events){?> active<?php } ?>" id="comments">
 		<?php if (count($comments)) { ?>
 		<br/>
 		<?= CHtml::link('<i class="glyphicon glyphicon-comment"></i> ins Gästebuch eintragen', array('/page/guestbook/list/', 'comment'=>$model->key), array('rel'=>'nofollow')) ?>
@@ -57,7 +57,7 @@ if ($commentable)
 	</div>
 	<?php } ?>
 
-	<?php if ($model->events) { ?>
+	<?php if (Yii::app()->getModule('page')->events && $model->events) { ?>
 	<div class="tab-pane active text" id="events">
 		<br/>
 		<?php
