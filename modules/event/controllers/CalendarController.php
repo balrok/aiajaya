@@ -160,7 +160,7 @@ class CalendarController extends Controller
 
 	public function actionAjaxCalendar()
 	{
-        $this->renderPartial('application.modules.event.views.terminnav', array('disable'=>'pager'));
+        $this->renderPartial('aiajaya.modules.event.views.terminnav', array('disable'=>'pager'));
 		return $this->renderPartial('_calendar', array(
 			'startDate'=>'',
 		));

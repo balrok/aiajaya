@@ -1,5 +1,5 @@
 <?php
-Yii::import('application.modules.event.models.Event');
+Yii::import('aiajaya.modules.event.models.Event');
 
 /**
  * more attributes

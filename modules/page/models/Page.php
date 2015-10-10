@@ -1,7 +1,5 @@
 <?php
- Yii::import('application.modules.page.models.Team');
- Yii::import('application.modules.page.models.Categorypage');
- Yii::import('application.modules.event.models.Event');
+Yii::import('aiajaya.modules.event.models.Event');
 
 
 /**

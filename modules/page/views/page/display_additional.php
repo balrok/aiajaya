@@ -43,7 +43,7 @@ if ($commentable)
 
 			$this->widget('zii.widgets.CListView', array(
 				'dataProvider'=>$dataProvider,
-				'itemView'=>'application.modules.page.views.guestbook._view',
+				'itemView'=>'aiajaya.modules.page.views.guestbook._view',
 				'id'=>'commentlist',
 				'viewData'=>array(
 					'type'=>'page'
@@ -63,7 +63,7 @@ if ($commentable)
 		<?php
 		foreach ($model->events as $event)
 		{
-			echo $this->renderPartial('application.modules.event.views.termin._view', array('data'=>$event, 'type'=>'page'), true);
+			echo $this->renderPartial('aiajaya.modules.event.views.termin._view', array('data'=>$event, 'type'=>'page'), true);
 		}
 		?>
 	</div>
