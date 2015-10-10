@@ -1,5 +1,35 @@
 <?php
 
+$root = dirname(__FILE__).'/../../../..';
+
+
+// configuration for several hosts
+$conf = include $root.'/indexconf.php';
+
+foreach ($conf['define'] as $k=>$v)
+    define($k, $v);
+
+// include yii framework
+require_once($root.$conf['yii']);
+// run yii without mvc
+class StandaloneApplication extends CWebApplication {
+    public function onBeginRequest($event) { return; }
+    public function onEndRequest($event) { return; }
+    public function processRequest() { return; }
+    //public function handleError($code, $message, $file, $line) {die(print_r(array($code, $message, $file, $line)));return;}
+}
+Yii::createApplication('StandaloneApplication', $root.$conf['config'])->run();
+Yii::app()->user; // the only thing we need from yii
+// we need to remove the autoloader of yii otherwise the kcfinder autoloader doesn't work
+spl_autoload_unregister(array('YiiBase','autoload'));
+
+function CheckAuthentication()
+{
+    return Yii::app()->user->id > 0;
+}
+
+
+
 /** This file is part of KCFinder project
   *
   *      @desc Base configuration file
@@ -22,8 +52,8 @@ $_CONFIG = array(
 // GENERAL SETTINGS
 
     'disabled' => false,
-    'uploadURL' => "upload",
-    'uploadDir' => "upload",
+    'uploadURL' => dirname(dirname(dirname(Yii::app()->baseUrl)))."/upload",
+    'uploadDir' => Yii::app()->basePath."/upload",
     'theme' => "default",
 
     'types' => array(
