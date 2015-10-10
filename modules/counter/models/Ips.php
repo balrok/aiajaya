@@ -5,12 +5,7 @@
  */
 class Ips extends CActiveRecord
 {
-	/**
-	 * The followings are the available columns in table '{{ips}}':
-	 * @var integer $id
-	 * @var string $ip
-	 * @var integer $time
-	 */
+	public $agent;
 
 	/**
 	 * Returns the static model of the specified AR class.
