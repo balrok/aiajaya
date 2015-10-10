@@ -25,9 +25,6 @@ echo $html;
 
 if ($model)
 {
-	$cs = Yii::app()->getClientScript();
-	$cs->registerCoreScript('jquery');
-	$cs->registerScriptFile(Yii::app()->request->getBaseUrl().'/js/askDel.js');
 	echo $this->renderPartial('_form', array('model'=>$model));
 }
 

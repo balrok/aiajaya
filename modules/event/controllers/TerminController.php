@@ -271,6 +271,13 @@ class TerminController extends Controller
 
 	public function actionIndex($copyId = null)
 	{
+		if (!Yii::app()->user->isGuest)
+		{	
+			$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../assets');
+			$cs = Yii::app()->getClientScript();
+			$cs->registerCoreScript('jquery');
+			$cs->registerScriptFile($assets.'/js/askDel.js');
+		}
 		// register rss feed
 		Yii::app()->clientScript->registerLinkTag('alternate', 'application/rss+xml', $this->createAbsoluteUrl('/event/termin/feed'),
 			null, array('title' => 'Termine vom Balance - Zentrum für Energie- und Körperarbeit') );

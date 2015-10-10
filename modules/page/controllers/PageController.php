@@ -199,15 +199,17 @@ class PageController extends Controller
 			$this->render404();
 			return;
 		}
+		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../assets');
 		if ($model->key == 'mantrasingen')
 		{
 			Yii::app()->clientScript->registerCssFile($this->baseUrl.'css/mantra.css');
-			Yii::app()->clientScript->registerScriptFile('/js/flowplayer/flowplayer-3.2.12.min.js');
+			Yii::app()->clientScript->registerScriptFile($assets.'/flowplayer/flowplayer-3.2.12.min.js');
 
 		}
+		// TODO make this more generic so you can turn it on or off
 		if ($model->key == 'weihnachtsseminar' || $model->key == 'gutscheinverkauf_weihnachten')
 		{
-			Yii::app()->clientScript->registerScriptFile('/js/jquery.snow.min.js');
+			Yii::app()->clientScript->registerScriptFile($assets.'/jquery.snow.min.js');
 			Yii::app()->clientScript->registerScript(__CLASS__.'weihnachtsseminar','$.fn.snow({ maxSize: 50, newOn: 1000 });');
 			Yii::app()->clientScript->registerCss(__CLASS__.'weihnachtsseminar','#flake {color:#09f}');
 			Yii::app()->clientScript->registerCoreScript('jquery');
