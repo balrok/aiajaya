@@ -233,4 +233,11 @@ class Controller extends CController
         return parent::createUrl($route, $params);
     }
 
+	/**
+		@ deprecated
+	*/
+	public function endFirstSection()
+	{
+		// TODO deprecated
+	}
 }

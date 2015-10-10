@@ -132,7 +132,7 @@ class TerminController extends Controller
 				->setFrom($from[0], $from[1])
                 ->send();
 
-			Yii::app()->user->setFlash('success', 'Erfolgreich an '.$email.' gesendet.');
+			Yii::app()->user->setFlash('success', 'Erfolgreich an Carl gesendet.');
 			$this->redirect(array('export'));
 		}
 		if(isset($_POST['dowhat']) && ($_POST['dowhat'] == 2 || $_POST['dowhat'] == 3))

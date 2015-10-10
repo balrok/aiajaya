@@ -8,7 +8,7 @@ if ($commentable)
 <br/>
 <div class="clearfix"> </div>
 <ul class="nav nav-tabs" role="tablist">
-	<?php if ($model->events) { ?>
+	<?php if (Yii::app()->getModule('page')->events && $model->events) { ?>
 		<li><a href="#events" class="active" role="tab" data-toggle="tab">Termine (<?= count($model->events)?>)</a></li>
 	<?php } ?>
 	<?php if ($commentable) { ?>

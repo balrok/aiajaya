@@ -1,5 +1,10 @@
 <?php
-Yii::import('aiajaya.modules.event.models.Event');
+
+
+if (Yii::app()->getModule('page')->events)
+{
+	Yii::import('aiajaya.modules.event.models.Event');
+}
 
 
 /**
@@ -30,7 +35,7 @@ class Page extends CActiveRecord
 				 '\'bilder/'=>array('getImageUrl("\'")', array('controller')),
 			);
 
-			if ($models = Team::model()->findAll())
+			if (Yii::app()->getModule('page')->team && $models = Team::model()->findAll())
 			{
 				foreach ($models as $model)
 					$replaceArray['{contact_'.$model->key.'}'] = array("getContact('".$model->key."');", array('this'));
