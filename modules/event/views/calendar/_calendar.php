@@ -1,0 +1,1 @@
+<iframe src="https://www.google.com/calendar/embed?src=<?= urlencode(Yii::app()->params['calendarId'])?>&ctz=Europe/Berlin<?=$startDate?>" style="border: 0" width="700" height="600" frameborder="0" scrolling="no"></iframe>
