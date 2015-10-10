@@ -241,49 +241,52 @@ class Termin extends CActiveRecord
 	public function getUntertitel($export=false, $links = true, $htmlentities=true)
 	{
 		$text = str_replace('--', '<br/>', CHtml::encode($this->untertitel));
-		if (!self::$teamModels)
+		if (Yii::app()->getModule('event')->team)
 		{
-			self::$teamModels = Team::model()->findAll();
-		}
+			if (!self::$teamModels)
+			{
+				self::$teamModels = Team::model()->findAll();
+			}
 
-		foreach (self::$teamModels as $model)
-		{
-			$alias = array($model->name);
-			if ($htmlentities)
-				$alias[] = htmlentities($model->name);
-			else
-				$alias[] = $model->name;
-			if ($model->name == 'Milam M. Horn')
+			foreach (self::$teamModels as $model)
 			{
-				$alias[] = 'Milam Horn';
-				$alias[] = 'Milam';
-			}
-			if ($model->name == 'Katarina Heidenreich')
-			{
-				$alias[] = 'Katarina';
-				$alias[] = 'K.Heidenreich';
-			}
-			foreach ($alias as $name)
-			{
-				if (strpos($text, $name) !== false)
+				$alias = array($model->name);
+				if ($htmlentities)
+					$alias[] = htmlentities($model->name);
+				else
+					$alias[] = $model->name;
+				if ($model->name == 'Milam M. Horn')
 				{
-					$this->teamLinks[] = $model->key;
-					if ($links)
+					$alias[] = 'Milam Horn';
+					$alias[] = 'Milam';
+				}
+				if ($model->name == 'Katarina Heidenreich')
+				{
+					$alias[] = 'Katarina';
+					$alias[] = 'K.Heidenreich';
+				}
+				foreach ($alias as $name)
+				{
+					if (strpos($text, $name) !== false)
 					{
-						if ($export)
-							$text = str_replace($name,
-								CHtml::link(substr($name, 0, 1),
-									Yii::app()->controller->createAbsoluteUrl('//page/team/get', array('key'=>$model->key)),
-									array('style'=>'#placeholderpersonstyle#', 'title'=>'Teamseite'))
-								.substr($name, 1),
-								$text);
-						else
-							$text = str_replace($name,
-								CHtml::link('<i class="glyphicon glyphicon-user"></i>', array('/page/team/get', 'key'=>$model->key), array('rel'=>'nofollow'))
-								." ".$name,
-								$text);
+						$this->teamLinks[] = $model->key;
+						if ($links)
+						{
+							if ($export)
+								$text = str_replace($name,
+									CHtml::link(substr($name, 0, 1),
+										Yii::app()->controller->createAbsoluteUrl('//page/team/get', array('key'=>$model->key)),
+										array('style'=>'#placeholderpersonstyle#', 'title'=>'Teamseite'))
+									.substr($name, 1),
+									$text);
+							else
+								$text = str_replace($name,
+									CHtml::link('<i class="glyphicon glyphicon-user"></i>', array('/page/team/get', 'key'=>$model->key), array('rel'=>'nofollow'))
+									." ".$name,
+									$text);
+						}
+						break;
 					}
-					break;
 				}
 			}
 		}
@@ -368,15 +371,18 @@ class Termin extends CActiveRecord
 
 		$this->getUntertitel();
 		$links = array_unique($this->teamLinks);
-		foreach ($this->teamEvents as $t)
-			$t->delete();
-		foreach ($links as $key)
+		if (Yii::app()->getModule('event')->team)
 		{
-			$tm = Team::model()->findCachedByKey($key);
-			$tId = $tm->id;
-			$t = new TeamEvent();
-			$t->attributes = array('event_id'=>$this->id, 'team_id'=>$tId);
-			$t->save();
+			foreach ($this->teamEvents as $t)
+				$t->delete();
+			foreach ($links as $key)
+			{
+				$tm = Team::model()->findCachedByKey($key);
+				$tId = $tm->id;
+				$t = new TeamEvent();
+				$t->attributes = array('event_id'=>$this->id, 'team_id'=>$tId);
+				$t->save();
+			}
 		}
 	}
 }
