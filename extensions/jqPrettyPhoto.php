@@ -9,24 +9,16 @@ class jqPrettyPhoto extends CComponent {
 	  
 	const PRETTY_SINGLE 	= 1; // create pretty for single links?
 	const PRETTY_GALLERY 	= 2; // create pretty gallery?
-	/**
-	 * @brief retrieve the script file name
-	 */
-	private static function scriptName($css=false) {
-		return $css ? '/css/prettyPhoto.css' : 'jquery.prettyPhoto.js';
-	}
 	
 	protected static function registerScript(){
 		$cs = Yii::app()->clientScript;
 		$cs->registerCoreScript('jquery');
-		$assets = Yii::app()->extensionPath. DIRECTORY_SEPARATOR.'prettyPhoto'.DIRECTORY_SEPARATOR;
-		$aUrl = Yii::app()->getAssetManager()->publish($assets);
-		$cs->registerScriptFile($aUrl.'/'.self::scriptName());
-		$cs->registerCssFile($aUrl .self::scriptName(true));
+		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../assets');
+		$cs->registerScriptFile($assets.'/prettyPhoto/js/jquery.prettyPhoto.js');
+		$cs->registerCssFile($assets.'/prettyPhoto/css/prettyPhoto.css');
 	}
 	
 	public static function addPretty($jsSelector=".gallery a", $gallery=self::PRETTY_GALLERY, $theme=self::THEME_FACEBOOK){
-		
 		self::registerScript();
 		
 		Yii::app()->clientScript->registerScript(__CLASS__,'
