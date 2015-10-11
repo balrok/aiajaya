@@ -199,7 +199,7 @@ class PageController extends Controller
 			$this->render404();
 			return;
 		}
-		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../assets');
+		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../../../assets');
 		if ($model->key == 'mantrasingen')
 		{
 			Yii::app()->clientScript->registerCssFile($this->baseUrl.'css/mantra.css');
