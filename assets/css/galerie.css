@@ -1,0 +1,21 @@
+
+.gal_box {
+    float:left;
+    width:260px;
+    margin:7px;
+    padding:3px;
+    border:1px dashed lightblue;
+}
+
+.link {
+    text-decoration: none;
+    border:0px;
+}
+
+.small_span {
+    line-height: 1.9;
+}
+
+.pp_social {
+	display:none;
+}
