@@ -6,7 +6,7 @@ class DefaultController extends Controller
 
 	public function actionIndex($cat='')
 	{
-		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../../assets');
+		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../../../assets');
 		Yii::app()->clientScript->registerScriptFile($assets.'/flowplayer/flowplayer-3.2.12.min.js');
 		Yii::app()->clientScript->registerCssFile($assets.'/css/galerie.css');
 
