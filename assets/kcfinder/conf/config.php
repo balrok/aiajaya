@@ -52,8 +52,8 @@ $_CONFIG = array(
 // GENERAL SETTINGS
 
     'disabled' => false,
-    'uploadURL' => dirname(dirname(dirname(Yii::app()->baseUrl)))."/upload",
-    'uploadDir' => dirname(Yii::app()->basePath)."/upload",
+    'uploadURL' => dirname(dirname(dirname(Yii::app()->baseUrl)))."/media",
+    'uploadDir' => dirname(Yii::app()->basePath)."/media",
     'theme' => "default",
 
     'types' => array(
