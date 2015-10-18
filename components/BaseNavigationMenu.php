@@ -1,43 +1,10 @@
 <?php
 
-class NavigationMenu
+class BaseNavigationMenu
 {
 	public function getMenu()
 	{
 		$menu = array();
-		$menu[] = array( 'label'=>'Praxis für Wurzeln und Flügel', 'url'=>array('/page/page/get', 'key'=>'startseite'),);
-		$menu[] = array(
-				'label'=>'Lebensberatung',
-				'url'=>array('/page/page/get', 'key'=>'lebensberatung'),
-			);
-		$menu[] = array(
-				'label'=>'Selbstentfaltungsseminare',
-				'url'=>array('/page/page/get', 'key'=>'selbstentfaltungsseminare'),
-			);
-		$menu[] = array(
-				'label'=>'Bibliodrama und Märchen',
-				'url'=>array('/page/page/get', 'key'=>'bibliodrama_maerchen'),
-			);
-		$menu[] = array(
-				'label'=>'Stimmwachstum',
-				'url'=>array('/page/page/get', 'key'=>'stimmwachstum'),
-			);
-		$menu[] = array(
-				'label'=>'Sologesang',
-				'url'=>array('/page/page/get', 'key'=>'sologesang'),
-			);
-		$menu[] = array(
-				'label'=>'Referenzen/Kooperation',
-				'url'=>array('/page/page/get', 'key'=>'partner'),
-			);
-		$menu[] = array(
-				'label'=>'zur Person',
-				'url'=>array('/page/page/get', 'key'=>'person'),
-			);
-		$menu[] = array(
-				'label'=>'Kontakt/Impressum',
-				'url'=>array('/page/page/get', 'key'=>'impressum'),
-			);
 		return $menu;
 	}
 

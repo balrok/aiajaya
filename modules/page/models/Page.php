@@ -33,6 +33,10 @@ class Page extends CActiveRecord
 				 '{neueSeite}'=>array('setPageBreak()', array('controller')),
 				 '"bilder/'=>array('getImageUrl("\"")', array('controller')),
 				 '\'bilder/'=>array('getImageUrl("\'")', array('controller')),
+				 '"pic/'=>array('getImageUrl("\"")', array('controller')),
+				 '\'pic/'=>array('getImageUrl("\'")', array('controller')),
+				 '"print/'=>array('getImageUrl("\"")', array('controller')),
+				 '\'print/'=>array('getImageUrl("\'")', array('controller')),
 			);
 
 			if (Yii::app()->getModule('page')->team && $models = Team::model()->findAll())
