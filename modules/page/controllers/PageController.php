@@ -161,9 +161,9 @@ class PageController extends Controller
 		return $this->_model;
 	}
 
-	public function getImageUrl($prefix='')
+	public function addBaseUrl($prefix, $path)
 	{
-		return $prefix.$this->imageUrl;
+		return $prefix.Yii::app()->baseUrl.'/'.$path;
 	}
 
 	// for testing purposes it is possible to use files here - filename must be the same as the keyname

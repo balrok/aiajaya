@@ -31,13 +31,17 @@ class Page extends CActiveRecord
 			$replaceArray = array(
 				 '{block1}'=>array('void()', array('controller')),
 				 '{neueSeite}'=>array('setPageBreak()', array('controller')),
-				 '"bilder/'=>array('getImageUrl("\"")', array('controller')),
-				 '\'bilder/'=>array('getImageUrl("\'")', array('controller')),
-				 '"pic/'=>array('getImageUrl("\"")', array('controller')),
-				 '\'pic/'=>array('getImageUrl("\'")', array('controller')),
-				 '"print/'=>array('getImageUrl("\"")', array('controller')),
-				 '\'print/'=>array('getImageUrl("\'")', array('controller')),
+				 '"bilder/'=>array('addBaseUrl("\"")', array('controller')),
+				 '\'bilder/'=>array('addBaseUrl("\'")', array('controller')),
+				 '"pic/'=>array('addBaseUrl("\"")', array('controller')),
+				 '\'pic/'=>array('addBaseUrl("\'")', array('controller')),
+				 '"print/'=>array('addBaseUrl("\"")', array('controller')),
+				 '\'print/'=>array('addBaseUrl("\'")', array('controller')),
 			);
+			foreach (array('bilder', 'pic', 'print') as $path) {
+				foreach(array('\'', '"') as $prefix)
+					$replaceArray[$prefix.$path.'/'] = array('addBaseUrl("\\'.$prefix.'","'.$path.'/")', array('controller'));
+			}
 
 			if (Yii::app()->getModule('page')->team && $models = Team::model()->findAll())
 			{

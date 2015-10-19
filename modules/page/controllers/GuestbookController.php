@@ -240,7 +240,7 @@ class GuestbookController extends Controller
 					)
 					// 'Jemand hat im Gästebuch ein Kommentar geschrieben mit folgenden abgesendeten Daten: '.$postData."<br/>\n<br/>\n")
 					->setFrom('gaestebuch@balance-dresden.info', 'Gästebuch '.Yii::app()->name);
-					->send();
+				$mail->send();
 			}
 			else
 			{
