@@ -1,5 +1,6 @@
 <?php
 $commentable = Yii::app()->params['enableGuestBook'] && $model->commentable;
+$eventable = Yii::app()->getModule('page')->events;
 if ($commentable)
 	$comments = $model->getComments();
 ?>
@@ -7,14 +8,16 @@ if ($commentable)
 <br/>
 <br/>
 <div class="clearfix"> </div>
-<ul class="nav nav-tabs" role="tablist">
-	<?php if (Yii::app()->getModule('page')->events && $model->events) { ?>
-		<li><a href="#events" class="active" role="tab" data-toggle="tab">Termine (<?= count($model->events)?>)</a></li>
-	<?php } ?>
-	<?php if ($commentable) { ?>
-		<li><a href="#comments" role="tab" data-toggle="tab">Gästebuch Kommentare (<?= count($comments)?>)</a></li>
-	<?php } ?>
-</ul>
+<?php if ($eventable || $commentable) { ?>
+	<ul class="nav nav-tabs" role="tablist">
+		<?php if ($eventable && $model->events) { ?>
+			<li><a href="#events" class="active" role="tab" data-toggle="tab">Termine (<?= count($model->events)?>)</a></li>
+		<?php } ?>
+		<?php if ($commentable) { ?>
+			<li><a href="#comments" role="tab" data-toggle="tab">Gästebuch Kommentare (<?= count($comments)?>)</a></li>
+		<?php } ?>
+	</ul>
+<?php } ?>
 
 <div class="tab-content">
 	<?php
@@ -24,7 +27,7 @@ if ($commentable)
 		// I reduced the pagesize so it is no big problem..
 		ShortWidgets::addJsShorten(".ext-comment p", 60);
 	?>
-	<div class="tab-pane text<?php if (!Yii::app()->getModule('page')->events || !$model->events){?> active<?php } ?>" id="comments">
+	<div class="tab-pane text<?php if (!$eventable || !$model->events){?> active<?php } ?>" id="comments">
 		<?php if (count($comments)) { ?>
 		<br/>
 		<?= CHtml::link('<i class="glyphicon glyphicon-comment"></i> ins Gästebuch eintragen', array('/page/guestbook/list/', 'comment'=>$model->key), array('rel'=>'nofollow')) ?>
@@ -57,7 +60,7 @@ if ($commentable)
 	</div>
 	<?php } ?>
 
-	<?php if (Yii::app()->getModule('page')->events && $model->events) { ?>
+	<?php if ($eventable && $model->events) { ?>
 	<div class="tab-pane active text" id="events">
 		<br/>
 		<?php
