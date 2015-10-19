@@ -26,7 +26,11 @@ EOC;
 	<?php echo $form->hiddenField($model, 'id')?>
 
 <?php
-foreach (array('titel', 'untertitel', 'zeit', 'datum', 'url', 'rubric') as $type)
+$fields = array('titel', 'untertitel', 'zeit', 'datum', 'url');
+if (Yii::app()->params['rubrikField']) {
+	$fields[] = 'rubric';
+}
+foreach ($fields as $type)
 {
 	echo '<div class="row">';
 	echo '<label for="Termin_'.$type.'">'.$model->getAttributeLabel($type).'</label>';

@@ -29,7 +29,7 @@
 				if ($comment->pageId)
 					$select = $comment->pageId;
 				else
-					$select = Page::model()->findByAttributes(array('key'=>'startseite'))->id;
+					$select = Page::model()->findByAttributes(array('key'=>Yii::app()->params['indexKey']))->id;
 			}
 
 			$comment->pageId = $select;

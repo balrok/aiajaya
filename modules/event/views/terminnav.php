@@ -4,12 +4,12 @@ if ($disable != 'head')
 {
 ?>
 
-<div class="terminnav">
 
 <?php
-if (Yii::app()->params['calendarEnabled'] || Yii::app()->user->id)
+if (Yii::app()->params['calendarEnabled'])
 {
 ?>
+<div class="terminnav">
 	<div style="float:left;">
 		Zeige als:
 	<?php
@@ -29,15 +29,14 @@ if (Yii::app()->params['calendarEnabled'] || Yii::app()->user->id)
 		'class'=>get_class($this)=='CalendarController'?'active':''));
 	echo '</div>';
 }
-?>
-
-
-<?php
-}
 
 if ($disable != 'foot')
 {
 ?>
 	<div style="clear:both"></div>
 </div>
-<?php } ?>
+<?php }
+}
+?>
+
+

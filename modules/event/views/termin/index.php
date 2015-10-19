@@ -1,22 +1,21 @@
 <h2>Termine</h2>
 <?php
-if ($logged_in){
-	if ($needsGCalendarSync)
-	{
-		echo '<div class="important">';
-		echo CHtml::link('Google Kalender Termine müssen aktualisiert werden!', array('/event/calendar/synchronizeEvents')).'<br/>';
-		echo '</div>';
-
-	}
-
-	echo CHtml::link('termine für Email exportieren', array('export')).'<br/>';
-
+if ($logged_in)
+{
 	if (Yii::app()->params['calendarEnabled']) {
-		echo CHtml::link('Kalender Anzeigen', array('/event/calendar/index')).'<br/>';
+		//echo CHtml::link('Kalender Anzeigen', array('/event/calendar/index')).'<br/>';
+		if ($needsGCalendarSync)
+		{
+			echo '<div class="important">';
+			echo CHtml::link('Google Kalender Termine müssen aktualisiert werden!', array('/event/calendar/synchronizeEvents')).'<br/>';
+			echo '</div>';
+
+		}
 	}
 
-
-
+	if (Yii::app()->params['emailExportEnabled']) {
+		echo CHtml::link('termine für Email exportieren', array('export')).'<br/>';
+	}
 }
 
 
