@@ -36,12 +36,15 @@ class ShortWidgets
 						   array('TextColor','BGColor'),
 						   array('Maximize')
 						),
-						'extraPlugins'=>'htmlwriter',
+						'extraPlugins'=>'htmlwriter,image2,autogrow',
+						'autogrow_on_startup'=>true,
+						'resize_enabled'=>true,
+						'autogrow_minHeight'=>400,
 						'removePlugins'=>'scayt,entities',
-						'height'=>'400px',
+						'height'=>'600px',
 						'widht'=>'100%',
-						'resize_enabled'=>false,
 						//'resize_maxWidth'=>400,
+						'skin'=>'office2013',
 					),
 					$options
 				),
