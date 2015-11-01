@@ -45,6 +45,7 @@ class ShortWidgets
 						'widht'=>'100%',
 						//'resize_maxWidth'=>400,
 						'skin'=>'office2013',
+						'contensCss'=>array(Yii::app()->theme->baseUrl.'css/style.css'),
 					),
 					$options
 				),
