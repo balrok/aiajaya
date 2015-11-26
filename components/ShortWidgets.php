@@ -57,7 +57,7 @@ class ShortWidgets
 	{
 		$assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__).'/../assets');
 		$cs = Yii::app()->getClientScript();
-		$cs->registerScriptFile($assets.'/jquery.dotdotdot-1.6.16.min.js');
+		$cs->registerScriptFile($assets.'/jquery.dotdotdot-1.7.4.js');
 		$cs->registerCoreScript('jquery');
         $js =<<<EOP
 			jQuery("$selector").each(function(){
