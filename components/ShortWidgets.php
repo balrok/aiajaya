@@ -49,7 +49,8 @@ class ShortWidgets
 						'widht'=>'100%',
 						//'resize_maxWidth'=>400,
 						'skin'=>'office2013',
-						//'contentsCss'=>$extraCss,
+						'bodyId'=>'mainbox',
+						'contentsCss'=>$extraCss,
 						//array(Yii::app()->theme->baseUrl.'/bootstrap/css/bootstrap.min.css', Yii::app()->theme->baseUrl.'css/style.css'),
 					),
 					$options
