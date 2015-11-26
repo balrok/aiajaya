@@ -47,7 +47,7 @@ class Controller extends CController
 		$this->imageUrl = Yii::app()->baseUrl.'/bilder/';
 
 		// style
-		Yii::app()->clientScript->registerCssFile($this->baseUrl.'css/style.css?v=1.5');
+		Yii::app()->clientScript->registerCssFile($this->baseUrl.'/css/style.css?v=1.5');
 
 		parent::init();
 	}

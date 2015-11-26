@@ -18,9 +18,11 @@ class ShortWidgets
 
 		$options['allowedContent'] = true; // otherwise it might remove <figure> tag or other
 
+		/*
 		$extraCss = array_merge(
-			Yii::app()->getClientScript()->packages['css'],
+			isset(Yii::app()->getClientScript()->packages['css'])?Yii::app()->getClientScript()->packages['css']:array(),
 			$extraCss);
+		 */
 
 		Yii::app()->getController()->widget('aiajaya.extensions.ckeditor.CKEditor', array(
 			'model'=>$model,
