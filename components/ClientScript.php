@@ -28,7 +28,7 @@ class ClientScript extends CClientScript {
 
             asort($this->priority);
             foreach ($this->priority as $path => $id){
-                $cssFilesOrdered[$path] = $currentCssFiles[$path];
+				$cssFilesOrdered[$path] = $currentCssFiles[$path];
                 unset($currentCssFiles[$path]);
             }
             # add any remaining CSS files that didn't have an order specified
@@ -46,12 +46,6 @@ class ClientScript extends CClientScript {
     {
         $this->setOrder($url, $order);
         return parent::registerCssFile($url, $media);
-    }
-
-    public function registerCss($id, $css, $media = '', $order = null)
-    {
-        $this->setOrder($id, $order);
-        return parent::registerCss($id, $css, $media);
     }
 
     private function setOrder($identifier, $order=null)
