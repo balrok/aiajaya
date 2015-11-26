@@ -47,7 +47,19 @@ class Controller extends CController
 		$this->imageUrl = Yii::app()->baseUrl.'/bilder/';
 
 		// style
-		Yii::app()->clientScript->registerCssFile($this->baseUrl.'/css/style.css?v=1.5');
+		foreach (Yii::app()->params['cssFiles'] as $f)
+		{
+			$file = $f[0];
+			if (isset($f[1]))
+			{
+				if ($f[1] == '/')
+					Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.$file);
+				if ($f[1] == 'themes')
+					Yii::app()->clientScript->registerCssFile($this->baseUrl.$file);
+			}
+			else
+				Yii::app()->clientScript->registerCssFile($this->baseUrl.$file);
+		}
 
 		parent::init();
 	}

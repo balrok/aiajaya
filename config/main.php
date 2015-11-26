@@ -80,5 +80,8 @@ return array(
 			'country' => 'Deutschland',
 			),
 		'termine_first' => true,
+		'cssFiles' => [
+			['/css/style.css?v=1.5', 'themes'],
+		],
 	),
 );
