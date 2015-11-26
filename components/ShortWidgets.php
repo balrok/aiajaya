@@ -4,7 +4,7 @@ class ShortWidgets
 {
 	// $model = model object
 	// $attribute = attribute which should be edited
-	static function ckEditor($model, $attribute, $options=array(), $htmlOptions=array())
+	static function ckEditor($model, $attribute, $options=array(), $htmlOptions=array(), $extraCss=array())
 	{
 		$options = array();
 
@@ -17,6 +17,10 @@ class ShortWidgets
 		$options['filebrowserFlashUploadUrl'] = $assets.'/kcfinder/upload.php?opener=ckeditor&type=flash';
 
 		$options['allowedContent'] = true; // otherwise it might remove <figure> tag or other
+
+		$extraCss = array_merge(
+			Yii::app()->getClientScript()->packages['css'],
+			$extraCss);
 
 		Yii::app()->getController()->widget('aiajaya.extensions.ckeditor.CKEditor', array(
 			'model'=>$model,
@@ -45,7 +49,8 @@ class ShortWidgets
 						'widht'=>'100%',
 						//'resize_maxWidth'=>400,
 						'skin'=>'office2013',
-						'contensCss'=>array(Yii::app()->theme->baseUrl.'/bootstrap/css/bootstrap.min.css', Yii::app()->theme->baseUrl.'css/style.css'),
+						'contensCss'=>$extraCss,
+						//array(Yii::app()->theme->baseUrl.'/bootstrap/css/bootstrap.min.css', Yii::app()->theme->baseUrl.'css/style.css'),
 					),
 					$options
 				),
