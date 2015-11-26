@@ -20,10 +20,13 @@ return array(
 
 	// application components
 	'components'=>array(
-		'user'=>array(
+		'user' => [
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-		),
+		],
+		'clientScript' => [
+			'class' => 'aiajaya.components.ClientScript',
+		],
 	),
 
     'modules'=>array(
