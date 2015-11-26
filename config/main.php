@@ -46,7 +46,7 @@ return array(
             'class' => 'aiajaya.modules.gallery.GalleryModule',
 			'galleries' => array(
 				// url_key is also the key inside bilder/gallery
-				array('Name', 'url_key', "example_image"),
+				// array('Name', 'url_key', "example_image"),
 			),
         ),
     ), 
