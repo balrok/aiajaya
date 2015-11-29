@@ -29,11 +29,11 @@ class Email
 		$this->mail->yiiDebug = false; //!Yii::app()->params['email']['send'];
 		$this->mail->CharSet = "UTF-8";
 		$this->mail->AltBody = "Ihr E-Mail Programm muss HTML unterstützen, damit Sie diese E-Mail korrekt lesen können.";
-		if (isset(Yii::app()->params['adminEmails']))
-			foreach (Yii::app()->params['adminEmails'] as $adminEmail)
-				$this->AddAddress($adminEmail);
-		if (isset(Yii::app()->params['adminEmail']))
-			$this->AddAddress(Yii::app()->params['adminEmail']);
+		$adminEmails = Yii::app()->params['adminEmails'];
+		$adminEmails[] = Yii::app()->params['adminEmails'];
+		$this->AddAddress($adminEmails[0]);
+		foreach ($adminEmails as $adminEmail)
+			$this->AddBCC($adminEmail);
 	}
 
 	public function validateAddress($address)
