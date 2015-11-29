@@ -30,7 +30,7 @@ class Email
 		$this->mail->CharSet = "UTF-8";
 		$this->mail->AltBody = "Ihr E-Mail Programm muss HTML unterstützen, damit Sie diese E-Mail korrekt lesen können.";
 		$adminEmails = Yii::app()->params['adminEmails'];
-		$adminEmails[] = Yii::app()->params['adminEmails'];
+		$adminEmails[] = Yii::app()->params['adminEmail'];
 		$this->AddAddress($adminEmails[0]);
 		foreach ($adminEmails as $adminEmail)
 			$this->AddBCC($adminEmail);
