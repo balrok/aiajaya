@@ -1,6 +1,6 @@
 <?php
 
-Yii::setPathOfAlias('aiajaya',dirname(dirname(__FILE__)));
+Yii::setPathOfAlias('aiajaya', dirname(dirname(__FILE__)));
 
 return array(
 	// autoloading model and component classes
