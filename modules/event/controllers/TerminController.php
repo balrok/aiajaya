@@ -137,11 +137,17 @@ class TerminController extends Controller
 		}
 		if(isset($_POST['dowhat']) && ($_POST['dowhat'] == 2 || $_POST['dowhat'] == 3))
 		{
+			$adminEmails = [];
+			if (isset(Yii::app()->params['adminEmails']))
+				$adminEmails = Yii::app()->params['adminEmails'];
+			if (isset(Yii::app()->params['adminEmail']))
+				$adminEmails[] = Yii::app()->params['adminEmail'];
+
 			$mail = new Email('customer');
 			$mail->setSubject($subject);
 			$mail->setMsg($html);
 			$html = $mail->getMsgHtml();
-			$from[0] = 'ddkatarina@hotmail.com';
+			$from[0] = $adminEmails[0];
 			$campaign = Yii::app()->mailchimp->createCampaign($subject, $from[0],$from[1], 'Newsletter', $html, $txt);
 			if ($campaign['status'] != "save")
 			{
@@ -150,7 +156,7 @@ class TerminController extends Controller
 			$id = $campaign['id'];
 			if ($_POST['dowhat'] == 2)
 			{
-				$result = Yii::app()->mailchimp->sendtestCampaign($id, array('balrok.1787569@gmail.com', 'ddkatarina@hotmail.com'));
+				$result = Yii::app()->mailchimp->sendtestCampaign($id, $adminEmails);
 				dump($result);
 			}
 			if ($_POST['dowhat'] == 3)

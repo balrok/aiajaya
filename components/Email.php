@@ -29,15 +29,11 @@ class Email
 		$this->mail->yiiDebug = false; //!Yii::app()->params['email']['send'];
 		$this->mail->CharSet = "UTF-8";
 		$this->mail->AltBody = "Ihr E-Mail Programm muss HTML unterstützen, damit Sie diese E-Mail korrekt lesen können.";
-		switch ($scenario)
-		{
-			case 'admin':
-				$this->AddAddress(Yii::app()->params['adminEmail']);
-				//$this->AddAddress('carl.schoenbach@gmail.com');
-				break;
-		}
-		$this->addBCC('carl.schoenbach@gmail.com');
-		$this->addBCC('ddkatarina@gmx.de');
+		if (isset(Yii::app()->params['adminEmails']))
+			foreach (Yii::app()->params['adminEmails'] as $adminEmail)
+				$this->AddAddress($adminEmail);
+		if (isset(Yii::app()->params['adminEmail']))
+			$this->AddAddress(Yii::app()->params['adminEmail']);
 	}
 
 	public function validateAddress($address)

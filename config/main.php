@@ -64,7 +64,8 @@ return array(
 		),
 		'indexKey'=>'startseite',
 		'enableGuestBook'=>false,
-		'adminEmail'=>'test@test.com',
+		'adminEmail'=>'test@test.com', // this one is deprecated
+		'adminEmails'=>['test@test.com'],
 		'calendarId'=>'asdfgh@group.calendar.google.com',
 		'calendarEnabled'=>false,
 		'emailExportEnabled'=>false,
