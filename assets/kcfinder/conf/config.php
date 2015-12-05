@@ -2,6 +2,7 @@
 
 $root = dirname(__FILE__).'/../../../..';
 
+set_include_path(get_include_path() . PATH_SEPARATOR . $root);
 
 // configuration for several hosts
 $conf = include $root.'/indexconf.php';
@@ -10,7 +11,7 @@ foreach ($conf['define'] as $k=>$v)
     define($k, $v);
 
 // include yii framework
-require_once($root.$conf['yii']);
+require_once($root.'/'.$conf['yii']);
 // run yii without mvc
 class StandaloneApplication extends CWebApplication {
     public function onBeginRequest($event) { return; }
