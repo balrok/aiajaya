@@ -263,12 +263,18 @@ class PageController extends Controller
 		}
 	}
 
-	public function actionSearch()
+	public function actionSearch($s=null)
 	{
-		$models = array();
-		if (isset($_POST['kw']) && strlen($_POST['kw']) > 2)
+		$models = [];
+		$keywords = [];
+		$query = '';
+		if (!is_null($s))
+			$query = $s;
+		elseif (isset($_POST['kw']))
+			$query = $_POST['kw'];
+		if ($query && strlen($query) > 2)
 		{
-			$keywords = explode(' ', $_POST['kw']);
+			$keywords = explode(' ', $query);
 			$search = '';
 			foreach ($keywords as $keyword)
 			{
@@ -303,7 +309,14 @@ class PageController extends Controller
 			$models = Page::model()->findAll($criteria);
 		}
 
-		$this->renderPartial('searchresults', array('models'=>$models));
+		if (Yii::app()->request->isAjaxRequest) // || is_null($s))
+		{
+			$this->renderPartial('searchresults', array('models'=>$models, 'keywords'=>$keywords));
+		}
+		else
+		{
+			$this->render('searchresults_full', array('models'=>$models, 'keywords'=>$keywords));
+		}
 	}
 
 	public function actionTag($key)

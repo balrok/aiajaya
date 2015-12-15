@@ -2,7 +2,7 @@
 	<?php
 		if (!$models)
 		{
-			echo '<li>Keine Suchergebnisse</li>'."\n";
+			echo '<li>Keine Suchergebnisse: '. implode(', ', $keywords).'</li>'."\n";
 		}
 		else
 		{
