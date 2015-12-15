@@ -18,7 +18,7 @@ class GuestbookController extends Controller
 	 */
 	public function filters()
 	{
-		if (!Yii::app()->params['enableGuestBook'])
+		if (!Yii::app()->getModule('page')->guestbook)
 			throw new CHttpException(404,'Die angeforderte Seite existiert nicht');
 		return array(
 			'accessControl', // perform access control for CRUD operations

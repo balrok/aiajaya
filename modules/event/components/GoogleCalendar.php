@@ -19,14 +19,14 @@ class GoogleCalendar
 
 	protected function __construct()
 	{
-		$this->calendarId = Yii::app()->params['calendarId'];
+		$this->calendarId = Yii::app()->getModule('event')->calendarId;
 	}
 
 	public static function getInstance()
 	{
 		if (!self::$instance)
 		{
-			if (Yii::app()->user->isGuest || !Yii::app()->params['calendarEnabled'])
+			if (Yii::app()->user->isGuest || !Yii::app()->getModule('event')->calendarEnabled)
 				self::$instance = new GoogleCalendarVoid();
 			else
 				self::$instance = new GoogleCalendar();
@@ -48,7 +48,7 @@ class GoogleCalendar
 				Yii::app()->controller->redirect(array('/event/calendar/login'));
 			elseif(Yii::app()->session['auth_token'] == 'access_denied')
 			{
-				Yii::app()->params['calendarEnabled'] = false;
+				Yii::app()->getModule('event')->calendarEnabled = false;
 				return;
 			}
 			$api = Yii::app()->GoogleApis;

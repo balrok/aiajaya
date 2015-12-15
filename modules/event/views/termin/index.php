@@ -2,7 +2,7 @@
 <?php
 if ($logged_in)
 {
-	if (Yii::app()->params['calendarEnabled']) {
+	if (Yii::app()->getModule('event')->calendarEnabled) {
 		//echo CHtml::link('Kalender Anzeigen', array('/event/calendar/index')).'<br/>';
 		if ($needsGCalendarSync)
 		{
@@ -13,7 +13,7 @@ if ($logged_in)
 		}
 	}
 
-	if (Yii::app()->params['emailExportEnabled']) {
+	if (Yii::app()->getModule('event')->emailExportEnabled) {
 		echo CHtml::link('termine für Email exportieren', array('export')).'<br/>';
 	}
 }

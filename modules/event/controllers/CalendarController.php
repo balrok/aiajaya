@@ -57,7 +57,7 @@ class CalendarController extends Controller
 	protected function getCalendar()
 	{
 		// this is anyway more for debugging so enable it always
-		Yii::app()->params['calendarEnabled'] = true;
+		Yii::app()->getModule('event')->calendarEnabled = true;
 		return GoogleCalendar::getInstance();
 	}
 

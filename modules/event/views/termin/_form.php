@@ -27,7 +27,7 @@ EOC;
 
 <?php
 $fields = array('titel', 'untertitel', 'zeit', 'datum', 'url');
-if (Yii::app()->params['rubrikField']) {
+if (Yii::app()->getModule('event')->rubrikField) {
 	$fields[] = 'rubric';
 }
 foreach ($fields as $type)

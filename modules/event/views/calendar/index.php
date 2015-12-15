@@ -21,7 +21,7 @@ if ($model)
 
 
 
-if (Yii::app()->params['calendarEnabled'] || Yii::app()->user->id) {
+if (Yii::app()->getModule('event')->calendarEnabled || Yii::app()->user->id) {
 	$this->renderPartial('_calendar', array('startDate'=>$startDate));
 }else {?>
 	Der Kalender ist momentan deaktiviert.

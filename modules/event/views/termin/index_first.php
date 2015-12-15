@@ -1,6 +1,6 @@
 <?php
 
-if (Yii::app()->params['termine_first']) {
+if (Yii::app()->getModule('event')->termine_first) {
     if($logged_in)
     {
         echo "Zeilenumbr&uuml;che mit einer neuen Zeile im Text<br/>\n";

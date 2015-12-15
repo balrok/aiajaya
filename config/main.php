@@ -35,9 +35,17 @@ return array(
         ),
         'event' => array(
             'class' => 'aiajaya.modules.event.EventModule',
+			'calendarEnabled' => false,
+			'calendarId'=>'asdfgh@group.calendar.google.com',
+			'emailExportEnabled'=>false,
+			'rubrikField'=>false,
+			'termine_first' => true,
         ),
         'page' => array(
             'class' => 'aiajaya.modules.page.PageModule',
+			'team' => true,
+			'events' => true,
+			'guestbook' => false,
         ),
         'counter' => array(
             'class' => 'aiajaya.modules.counter.CounterModule',
@@ -63,13 +71,8 @@ return array(
 			),
 		),
 		'indexKey'=>'startseite',
-		'enableGuestBook'=>false,
 		'adminEmail'=>'', // this one is deprecated
 		'adminEmails'=>[],
-		'calendarId'=>'asdfgh@group.calendar.google.com',
-		'calendarEnabled'=>false,
-		'emailExportEnabled'=>false,
-		'rubrikField'=>false,
 		'breadcrumbs' => true,
 		'addthisevent' => 'asdf',
 		'google_plus_id'=>"12345",
@@ -80,7 +83,6 @@ return array(
 			'state' => 'Sachsen',
 			'country' => 'Deutschland',
 			),
-		'termine_first' => true,
 		'cssFiles' => [
 			['/css/style.css?v=1.5', 'themes'],
 		],

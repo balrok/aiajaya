@@ -6,7 +6,7 @@ if ($disable != 'head')
 
 
 <?php
-if (Yii::app()->params['calendarEnabled'])
+if (Yii::app()->getModule('event')->calendarEnabled)
 {
 ?>
 <div class="terminnav">

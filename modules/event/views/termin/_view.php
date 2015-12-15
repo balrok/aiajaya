@@ -29,7 +29,7 @@
 						$data->getUrl(), $options);
 				}
 			?>
-			<?php if (Yii::app()->params['calendarEnabled']) { ?>
+			<?php if (Yii::app()->getModule('event')->calendarEnabled) { ?>
 				<?php if ($data->gId){ ?>
 					<?= Chtml::link('<i class="glyphicon glyphicon-calendar"></i><span class="info"> Kalender</span>',
 						array('/event/calendar/index', 'id'=>$data->id), array('target'=>'_blank', 'title'=>'Kalender', 'class'=>'moreInfos', 'rel'=>'nofollow'))?>

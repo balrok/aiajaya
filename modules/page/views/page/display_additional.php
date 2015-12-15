@@ -1,5 +1,5 @@
 <?php
-$commentable = Yii::app()->params['enableGuestBook'] && $model->commentable;
+$commentable = Yii::app()->getModule('page')->guestbook && $model->commentable;
 $eventable = Yii::app()->getModule('page')->events;
 if ($commentable)
 	$comments = $model->getComments();

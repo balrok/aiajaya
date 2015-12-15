@@ -4,6 +4,8 @@ class PageModule extends CWebModule
 {
 	public $team = true;
 	public $events = true;
+	public $guestbook = false;
+
 	public function init()
 	{
 		// this method is called when the module is being created

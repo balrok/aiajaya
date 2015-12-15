@@ -3,6 +3,12 @@
 class EventModule extends CWebModule
 {
 	public $team = true;
+	public $calendarEnabled = false;
+	public $calendarId = null;
+	public $emailExportEnabled = false;
+	public $rubrikField = false;
+	public $termine_first = false;
+
 	public function init()
 	{
 		// this method is called when the module is being created

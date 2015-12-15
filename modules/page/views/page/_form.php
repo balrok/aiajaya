@@ -31,7 +31,7 @@
 		<?php echo $form->error($model,'meta_title'); ?>
 	</div>
 
-	<?php if (Yii::app()->params['enableGuestBook']) {?>
+	<?php if (Yii::app()->getModule('page')->guestbook) {?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'commentable'); ?>
 		<?php echo $form->checkbox($model,'commentable')?>
