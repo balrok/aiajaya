@@ -46,6 +46,7 @@ return array(
 			'team' => true,
 			'events' => true,
 			'guestbook' => false,
+			'guestbook_global' => false,
         ),
         'counter' => array(
             'class' => 'aiajaya.modules.counter.CounterModule',

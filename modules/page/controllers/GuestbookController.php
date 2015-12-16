@@ -74,6 +74,7 @@ class GuestbookController extends Controller
 
 		$this->render('commentList',
 			array(
+				'model' => Comment::model(),
 				'models'=>$models,
 				'comments'=>$dataProvider,
 			)
@@ -101,6 +102,7 @@ class GuestbookController extends Controller
   			'criteria' => $criteria,));
 
 		$this->renderPartial('commentList', array(
+			'model' => Comment::model(),
 			'models'=>array($model),
 			'comments'=>$dataProvider,
 		));
@@ -365,5 +367,41 @@ class GuestbookController extends Controller
 			}
 		}
 		return $comment->save();
+	}
+
+	protected function getPageIdFromDefaultOrPost($comment)
+   	{
+		if (Yii::app()->getModule('page')->guestbook_global)
+			return Page::model()->findByAttributes(array('key'=>Yii::app()->params['indexKey']))->id;
+
+		$select = null;
+		foreach (Page::model()->with('commentCount')->findAll() as $page)
+		{
+			if ($page->commentable && $page->active)
+			{
+				if (isset($_GET['comment']) && $page->key == $_GET['comment'])
+					$select = $page->id;
+			}
+		}
+		if (isset($_POST['Comment']) && isset($_POST['Comment']['pageId']))
+			$select = $_POST['Comment']['pageId'];
+		if (!$select)
+		{
+			if ($comment->pageId)
+				$select = $comment->pageId;
+			else
+				$select = Page::model()->findByAttributes(array('key'=>Yii::app()->params['indexKey']))->id;
+		}
+		return $select;
+	}
+
+	protected function getAllSelect()
+	{
+		$allSelect = [];
+		foreach (Page::model()->with('commentCount')->findAll() as $page)
+			if ($page->commentable && $page->active)
+				$allSelect[$page->id] = $page->commentName. ' ('. $page->commentCount.')';
+		asort($allSelect);
+		return $allSelect;
 	}
 }

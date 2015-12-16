@@ -8,58 +8,43 @@
 
 	<?php /** @var CActiveForm $form */
 	echo $form->errorSummary($comment); ?>
-	<div class="row">
-		<?php
-			$select = null;
-			$allSelect = array();
 
-			foreach (Page::model()->with('commentCount')->findAll() as $page)
-			{
-				if ($page->commentable && $page->active)
-				{
-					$allSelect[$page->id] = $page->commentName. ' ('. $page->commentCount.')';
-					if (isset($_GET['comment']) && $page->key == $_GET['comment'])
-						$select = $page->id;
-				}
-			}
-			if (isset($_POST['Comment']) && isset($_POST['Comment']['pageId']))
-				$select = $_POST['Comment']['pageId'];
-			if (!$select)
-			{
-				if ($comment->pageId)
-					$select = $comment->pageId;
-				else
-					$select = Page::model()->findByAttributes(array('key'=>Yii::app()->params['indexKey']))->id;
-			}
+	<?php
+		$select = $this->getPageIdFromDefaultOrPost($comment);
+		$comment->pageId = $select;
+		if (!$comment->name)
+			$comment->name = 'Gast';
 
-			$comment->pageId = $select;
-			if (!$comment->name)
-				$comment->name = 'Gast';
-			asort($allSelect);
-		?>
+		if (!Yii::app()->getModule('page')->guestbook_global) {?>
+		<div class="row">
+			<?php
+				$allSelect = array();
+				$allSelect = $this->getAllSelect();
 
-		<?php
+			$ajaxData = array(
+				'ajax' => array(
+				'type'=>'POST', //request type
+				'url'=>CController::createUrl('/page/guestbook/filter'), //url to call.
+				//Style: CController::createUrl('currentController/methodToCall')
+				'update'=>'#commentlist', //selector to update
+				'data'=>array('filter'=>'js:this.value'),
+				//'data'=>'js:javascript statement' 
+				//leave out the data key to pass all form values through
+			),'class'=>'form-control'); 
+			if ($comment->id)
+				$ajaxData = array();
 
-		$ajaxData = array(
-			'ajax' => array(
-			'type'=>'POST', //request type
-			'url'=>CController::createUrl('/page/guestbook/filter'), //url to call.
-			//Style: CController::createUrl('currentController/methodToCall')
-			'update'=>'#commentlist', //selector to update
-			'data'=>array('filter'=>'js:this.value'),
-			//'data'=>'js:javascript statement' 
-			//leave out the data key to pass all form values through
-		),'class'=>'form-control'); 
-		if ($comment->id)
-			$ajaxData = array();
+			$ajaxData['id'] = 'dropdown_'.$comment->id;
 
-		$ajaxData['id'] = 'dropdown_'.$comment->id;
-
-		echo $form->labelEx($comment,'pageId');
-		echo CHtml::dropDownList('Comment[pageId]', $select, $allSelect, $ajaxData);
-		?>
-		<?php echo $form->error($comment,'pageId'); ?>
-	</div>
+			echo $form->labelEx($comment,'pageId');
+			echo CHtml::dropDownList('Comment[pageId]', $select, $allSelect, $ajaxData);
+			?>
+			<?php echo $form->error($comment,'pageId'); ?>
+		</div>
+	<?php }else{
+			echo '<input type="hidden" name="Comment[pageId]" value="'.$select.'"/>';
+		}
+ 	?>
 	<div class="row">
 		<?php echo $form->labelEx($comment,'name'); ?>
 		<?php echo CHtml::activeTextField($comment,'name', array('class'=>'form-control'))?>

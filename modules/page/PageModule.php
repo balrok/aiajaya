@@ -2,9 +2,14 @@
 
 class PageModule extends CWebModule
 {
-	public $team = true;
+	// do you want a team-page?
+	public $team = false;
+	// do you have the event module?
 	public $events = true;
+	// do you want a guestbook
 	public $guestbook = false;
+	// do you want the guestbook for each page or one global
+	public $guestbook_global = false;
 
 	public function init()
 	{

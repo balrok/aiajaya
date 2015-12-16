@@ -9,7 +9,7 @@ $this->renderPartial('_view', array('type'=>'css'));
 
 if (!isset($_POST['filter'])) {
 $this->renderPartial('commentForm', array(
-    'model'=>reset($models),
+    'model'=>$model,
     'models'=>$models,
 ));
 }
