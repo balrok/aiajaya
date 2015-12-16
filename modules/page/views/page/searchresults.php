@@ -19,7 +19,7 @@
 					break;
 			}
 			if (count($models) > $i)
-				echo '<li>... noch '.(count($models)-$i).' weitere</li>';
+				echo '<li>'.CHtml::link('... noch '.(count($models)-$i).' weitere', ['/page/page/search', 's'=>implode(' ',$keywords)]).'</li>'."\n";
 		}
 	?>
 </ul>
