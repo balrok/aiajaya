@@ -40,7 +40,7 @@ class ShortWidgets
 						   array('TextColor','BGColor'),
 						   array('Maximize')
 						),
-						'extraPlugins'=>'htmlwriter,image2,autogrow',
+						'extraPlugins'=>'htmlwriter,image2,autogrow,autosave',
 						'autogrow_on_startup'=>true,
 						'resize_enabled'=>true,
 						'autogrow_minHeight'=>400,
