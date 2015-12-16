@@ -165,6 +165,7 @@ class Page extends CActiveRecord
 				}
 			}
 		}
+		Yii::log($this->key, 'info', 'Seite gespeichert');
 		Yii::log($this->text, 'info', 'Seite gespeichert');
 	}
 

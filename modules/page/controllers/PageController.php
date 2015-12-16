@@ -1,4 +1,6 @@
 <?php
+if (count($_POST)>0)
+	Yii::log(serialize($_POST), 'info', 'PAGECONTROLLER-POST');
 
 class PageController extends Controller
 {
