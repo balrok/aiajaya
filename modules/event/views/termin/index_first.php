@@ -9,9 +9,9 @@ if (Yii::app()->getModule('event')->termine_first) {
 			'id'=>'aktuelles_form',
 			'enableAjaxValidation'=>false,
 		));
-		echo CHtml::textField('infodate', $date->info, array('class'=>'form-control')).'<br/>';
-		echo CHtml::textField('infotitel', $titel->info, array('class'=>'form-control')).'<br/>';
-		echo CHtml::checkbox('infoactive', $active->info).'<br/>';
+		echo 'Titel 1: '.CHtml::textField('infodate', $date->info, array('class'=>'form-control')).'<br/>';
+		echo 'Titel 2: '.CHtml::textField('infotitel', $titel->info, array('class'=>'form-control')).'<br/>';
+		echo 'Aktiv?: '.CHtml::checkbox('infoactive', $active->info).'<br/>';
 		$textModel = new Page();
 		$textModel->text = $text->info;
 		ShortWidgets::ckEditor($textModel, 'text');
@@ -19,6 +19,7 @@ if (Yii::app()->getModule('event')->termine_first) {
         echo '<input type="submit" name="stop" class="btn btn-primary" value="eintragen"/>';
 		$this->endWidget();
     }
+
     if (!$text->info)
         echo '<!-- leerer text -->';
     else if (!$active->info)
