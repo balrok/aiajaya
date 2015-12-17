@@ -19,7 +19,7 @@ return array(
 	),
 
 	// application components
-	'components'=>array(
+	'components' => [
 		'user' => [
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -27,7 +27,22 @@ return array(
 		'clientScript' => [
 			'class' => 'aiajaya.components.ClientScript',
 		],
-	),
+		'session' => [
+			/*
+			'class' => 'CDbHttpSession',
+			'autoCreateSessionTable' => true,
+			 */
+			'class' => 'CCacheHttpSession',
+			// we don't want to let php handle our sessions
+			// in debian jessie the default timeout was 24 minutes
+
+		],
+
+		'cache' => [
+			'class'=>'system.caching.CFileCache',
+			'directoryLevel' => 1, // otherwise all goes into one file
+		],
+	],
 
     'modules'=>array(
         'user' => array(
